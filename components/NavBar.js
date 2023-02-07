@@ -7,7 +7,7 @@ import {
   Nav,
   Button,
 } from 'react-bootstrap';
-import { signOut } from '../utils/auth';
+import { signOut } from '../auth/auth';
 
 export default function NavBar() {
   return (
