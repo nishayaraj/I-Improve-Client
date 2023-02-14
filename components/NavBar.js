@@ -25,6 +25,9 @@ export default function NavBar() {
             <Link passHref href="/tags">
               <Nav.Link>Tags</Nav.Link>
             </Link>
+            <Link passHref href="/goals">
+              <Nav.Link>Goals</Nav.Link>
+            </Link>
             <Button variant="danger" onClick={signOut}>
               Sign Out
             </Button>
