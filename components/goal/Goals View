@@ -1,0 +1,17 @@
+Goals View  
+  Display multiple View
+    Each goal card
+      1. View
+      2. Edit
+      3. Delete
+  Create new goal
+
+Goal View
+  Display Goal info
+  Display Keymetric
+    Each Keymetric card
+    Toggle button on key metric
+
+Create/Update Goal
+  Display Goal Form
+  Implement multiselect on tag data

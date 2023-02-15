@@ -1,13 +1,15 @@
 /* eslint-disable react/forbid-prop-types */
-import React, { useRef } from 'react';
-// import { useRouter } from 'next/router';
+import React, { useRef, useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import Multiselect from 'multiselect-react-dropdown';
-// // import PageTitle from '../PageTitle';
-// import { getMyTags } from '../../api/tagData';
+import { useAuth } from '../../auth/context/authContext';
+import PageTitle from '../PageTitle';
+import { getMyTags } from '../../api/tagData';
+import { createGoal, updateGoal } from '../../api/goalData';
 
 const initialState = {
   id: '',
@@ -18,29 +20,54 @@ const initialState = {
 };
 
 function GoalForm({ goalObj }) {
-  // const router = useRouter();
-  // const { user } = useAuth();
-  // const [goalFormInput, setGoalFormInput] = useState(initialState);
-  // const [tagsList, setTagsList] = useState([]);
-  // const [selectedTags, setSelectedTags] = useState([]);
+  const router = useRouter();
+  const { user } = useAuth();
+  const [goalFormInput, setGoalFormInput] = useState(initialState);
+  const [tagsList, setTagsList] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
   const tagMultiSelectRef = useRef();
 
-  // useEffect(() => {
-  //   if (goalObj?.id) {
-  //     setGoalFormInput({ ...initialState, ...(goalObj || {}) });
-  //     setSelectedTags(goalObj.tags);
-  //   }
-  // }, [goalObj]);
+  useEffect(() => {
+    if (goalObj?.id) {
+      setGoalFormInput({ ...initialState, ...(goalObj || {}) });
+      setSelectedTags(goalObj.tags);
+    }
+  }, [goalObj]);
 
-  // useEffect(() => {
-  //   getMyTags(user.id).then((tagsData) => {
-  //     setTagsList(tagsData);
-  //   });
-  // }, [user]);
+  useEffect(() => {
+    getMyTags(user.id).then((tagsData) => {
+      setTagsList(tagsData);
+    });
+  }, [user]);
+
+  // Handle Mutli select tags
+  const updateTagSelected = (selectedTagData) => {
+    setSelectedTags(selectedTagData);
+  };
+
+  // handles form element change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setGoalFormInput({ ...goalFormInput, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const tags = [];
+    selectedTags.forEach((tag) => !tags.includes(tag.id) && tags.push(tag.id));
+    const payload = { ...goalFormInput, tags, userId: user.id };
+    if (goalFormInput.id) {
+      updateGoal(payload).then(() => router.back());
+    } else {
+      createGoal(payload).then(() => {
+        router.back();
+      });
+    }
+  };
 
   return (
     <Form
-    // onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
       style={{
         color: 'black',
         lineHeight: '25px',
@@ -51,7 +78,7 @@ function GoalForm({ goalObj }) {
         background: 'white',
       }}
     >
-      <h6>Create Goal</h6>
+      <PageTitle title={`${goalFormInput.id ? `Update : ${goalObj.title}` : 'Create goal'}`} />
       <FloatingLabel
         controlId="floatingInput1"
         label="Goal Title"
@@ -62,17 +89,17 @@ function GoalForm({ goalObj }) {
           type="text"
           placeholder="Enter Goal Title"
           name="title"
-          value={goalObj.title}
-          // onChange={handleChange}
+          value={goalFormInput.title}
+          onChange={handleChange}
           required
         />
       </FloatingLabel>
 
       <Multiselect
-        // options={goalsList}
-        // selectedValues={selectedTags}
-        // onSelect={updateJournalSelected}
-        // onRemove={updateJournalSelected}
+        options={tagsList}
+        selectedValues={selectedTags}
+        onSelect={updateTagSelected}
+        onRemove={updateTagSelected}
         displayValue="title"
         placeholder="Select Tags"
         hidePlaceholder
@@ -80,7 +107,7 @@ function GoalForm({ goalObj }) {
       />
       <FloatingLabel
         controlId="floatingInput2"
-        label="Date"
+        label="due"
         className="mb-3"
         style={{ marginTop: '25px' }}
       >
@@ -88,8 +115,8 @@ function GoalForm({ goalObj }) {
           type="date"
           placeholder="Due Date"
           name="due"
-          value={goalObj.due}
-          // onChange={handleChange}
+          value={goalFormInput.due}
+          onChange={handleChange}
           required
         />
       </FloatingLabel>
