@@ -3,8 +3,6 @@ import { Form, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { createKeyMetrics } from '../../api/keyMetricsdata';
 
-// check onNewKeyMetricCreated function..................
-
 function KeyMetricsForm({ goalId, onNewKeyMetricCreated }) {
   const [newKeyMetric, setNewKeyMetric] = useState('');
 
