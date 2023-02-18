@@ -28,6 +28,9 @@ export default function NavBar() {
             <Link passHref href="/goals">
               <Nav.Link>Goals</Nav.Link>
             </Link>
+            <Link passHref href="/retros">
+              <Nav.Link>Action Items</Nav.Link>
+            </Link>
             <Button variant="danger" onClick={signOut}>
               Sign Out
             </Button>
