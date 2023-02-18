@@ -22,6 +22,9 @@ function ViewGoal() {
     getGoalAndAssociatedMetrics();
   }, [id]);
 
+  // refactor code to add goal.id to handle submitted keymetric addition to goal
+  const routeToKeyMetricsForm = () => router.push(`/key_metrics/new?goalId=${goal.id}`);
+
   const renderKeyMetrics = () => {
     if (keyMetrics.length > 0) {
       return (
@@ -54,6 +57,24 @@ function ViewGoal() {
       <p>Due Date: {goal.due}</p>
       <p>Goal Tags: {renderGoalTagList(goal.tags)}</p>
       {renderKeyMetrics()}
+      <button
+        type="button"
+        style={{
+          display: 'flex',
+          padding: '6px',
+          border: '1.5px solid lightgray',
+          borderRadius: '8px',
+          alignItems: 'center',
+          width: '90px',
+          cursor: 'pointer',
+          fontWeight: 'bold',
+          marginRight: '8px',
+          background: 'none',
+        }}
+        onClick={routeToKeyMetricsForm}
+      >
+        Add new key metrics
+      </button>
     </div>
   );
 }

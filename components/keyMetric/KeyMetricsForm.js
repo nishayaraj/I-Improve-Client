@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { createKeyMetrics } from '../../api/keyMetricsdata';
 
-function KeyMetricsForm({ goalId, onNewKeyMetricCreated }) {
+function KeyMetricsForm({ onNewKeyMetricCreated }) {
+  const router = useRouter();
+
+  const { goalId } = router.query;
+
   const [newKeyMetric, setNewKeyMetric] = useState('');
 
   const onChange = (e) => setNewKeyMetric(e.target.value);
@@ -13,16 +18,17 @@ function KeyMetricsForm({ goalId, onNewKeyMetricCreated }) {
     const payload = {
       goalId: Number(goalId),
       title: newKeyMetric,
+      status: false,
     };
     createKeyMetrics(payload).then(onNewKeyMetricCreated);
     setNewKeyMetric('');
   };
 
   return (
-    <Form className="comment-form-div" onSubmit={handleSubmit}>
-      <Form.Group className="comment-form">
+    <Form className="key-metric-form-div" onSubmit={handleSubmit}>
+      <Form.Group className="key-metric-form">
         <Form.Label>Add a key metric to this goal</Form.Label>
-        <input className="comment-form-input" type="text" name="Comment" value={newKeyMetric} onChange={onChange} />
+        <input className="key-metric-form-input" type="text" name="key-metric" value={newKeyMetric} onChange={onChange} />
         <Button variant="primary" type="submit">
           Submit
         </Button>
@@ -33,7 +39,6 @@ function KeyMetricsForm({ goalId, onNewKeyMetricCreated }) {
 
 KeyMetricsForm.propTypes = {
   onNewKeyMetricCreated: PropTypes.func.isRequired,
-  goalId: PropTypes.string.isRequired,
 };
 
 export default KeyMetricsForm;
