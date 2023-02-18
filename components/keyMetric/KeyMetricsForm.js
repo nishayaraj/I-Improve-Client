@@ -21,6 +21,9 @@ function KeyMetricsForm({ onNewKeyMetricCreated }) {
       status: false,
     };
     createKeyMetrics(payload).then(onNewKeyMetricCreated);
+    createKeyMetrics(payload).then(() => {
+      router.back();
+    });
     setNewKeyMetric('');
   };
 
