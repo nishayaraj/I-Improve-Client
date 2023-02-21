@@ -20,7 +20,7 @@ function RetroCard({ retroObj }) {
         <div
           style={{ color: '#717171' }}
         >
-          <b>Action Item: {retroObj.actionItem}</b>
+          <b>{retroObj.actionItem}</b>
         </div>
 
       </div>
