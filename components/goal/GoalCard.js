@@ -8,6 +8,10 @@ import { deleteGoal } from '../../api/goalData';
 function MyGoalCard({ goalObj, onUpdate }) {
   const router = useRouter();
 
+  const goalCardDate = new Date(goalObj.due);
+  const now = new Date().setHours(0, 0, 0, 0);
+  const isPastCurrentDate = (goalCardDate <= now);
+
   const deleteThisGoal = () => {
     if (window.confirm(`Delete ${goalObj.title}?`)) {
       deleteGoal(goalObj.id).then(() => onUpdate());
@@ -18,11 +22,13 @@ function MyGoalCard({ goalObj, onUpdate }) {
 
   const viewGoal = () => router.push(`/goals/${goalObj.id}`);
 
+  const routeToCreateRetroPage = () => router.push(`/retros/new?goalId=${goalObj.id}`);
+
   const renderGoalTagList = (tags) => {
     let goalTagList = '';
     if (tags && tags.length > 0) {
-      tags.forEach((element) => {
-        goalTagList += `${element.title}, `;
+      tags.forEach((element, index) => {
+        goalTagList += (index + 1 === tags.length) ? `${element.title}` : `${element.title}, `;
       });
     }
     return goalTagList;
@@ -57,7 +63,24 @@ function MyGoalCard({ goalObj, onUpdate }) {
           <span>Tags : </span>
           <b>{renderGoalTagList(goalObj.tags)}</b>
         </div>
-
+        <button
+          type="button"
+          style={{
+            display: 'flex',
+            padding: '6px',
+            border: !isPastCurrentDate ? '2px solid red' : '1.5px solid lightgray',
+            borderRadius: '8px',
+            alignItems: 'center',
+            width: '90px',
+            cursor: 'pointer',
+            fontWeight: 'bold',
+            marginRight: '8px',
+            background: 'none',
+          }}
+          onClick={routeToCreateRetroPage}
+        >
+          Retro
+        </button>
         <div
           style={{
             margin: '10px 0px',
@@ -99,6 +122,7 @@ function MyGoalCard({ goalObj, onUpdate }) {
               background: 'none',
             }}
             onClick={editGoal}
+            disabled={isPastCurrentDate}
           >
 
             Edit

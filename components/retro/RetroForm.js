@@ -25,6 +25,8 @@ function RetroForm({ retroObj }) {
   const { user } = useAuth();
   const [retroFormInput, setRetroFormInput] = useState(initialState);
 
+  const { goalId } = router.query;
+
   useEffect(() => {
     if (retroObj?.id) {
       setRetroFormInput({ ...initialState, ...(retroObj || {}) });
@@ -36,14 +38,16 @@ function RetroForm({ retroObj }) {
     setRetroFormInput({ ...retroFormInput, [name]: value });
   };
 
-  // handle toggle change function to be included here !!!!!!!!!
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    const payload = { ...retroFormInput, userId: user.id };
-    createRetros(payload).then(() => {
-      router.push('/retros');
-    });
+    if (retroFormInput?.id === 0) {
+      const createRetroObject = { ...retroFormInput };
+      delete createRetroObject.id;
+      const payload = { ...createRetroObject, goalId, userId: user.id };
+      createRetros(payload).then(() => {
+        router.push('/action_items');
+      });
+    }
   };
 
   return (
@@ -123,18 +127,6 @@ function RetroForm({ retroObj }) {
           required
         />
       </FloatingLabel>
-
-      <Form.Check
-        className="text-black mb-3"
-        type="switch"
-        id="status"
-        name="status"
-        label="Completed ?"
-        checked={retroFormInput.status}
-        // onChange={handleToggleChange}
-        style={{ marginTop: '25px' }}
-      />
-
       <Button
         type="submit"
         style={{
