@@ -55,7 +55,10 @@ function GoalForm({ goalObj }) {
     e.preventDefault();
     const tags = [];
     selectedTags.forEach((tag) => !tags.includes(tag.id) && tags.push(tag.id));
-    const payload = { ...goalFormInput, tags, userId: user.id };
+
+    const payload = {
+      ...goalFormInput, tags, userId: user.id,
+    };
     if (goalFormInput.id) {
       updateGoal(payload).then(() => router.back());
     } else {
