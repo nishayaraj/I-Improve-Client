@@ -49,7 +49,7 @@ function MyGoalCard({ goalObj, onUpdate }) {
         <div
           style={{ marginTop: '6px' }}
         >
-          <span>Created On : </span>{goalObj.due}
+          <span>Due Date : </span>{goalObj.due}
         </div>
         <div
           style={{ marginTop: '6px', color: '#717171' }}

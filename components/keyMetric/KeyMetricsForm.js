@@ -21,10 +21,12 @@ function KeyMetricsForm({ onNewKeyMetricCreated }) {
       status: false,
     };
     createKeyMetrics(payload).then(onNewKeyMetricCreated);
-    createKeyMetrics(payload).then(() => {
-      router.back();
-    });
+    router.back();
     setNewKeyMetric('');
+  //   createKeyMetrics(payload).then(() => {
+  //     router.back();
+  //   });
+  //   setNewKeyMetric('');
   };
 
   return (

@@ -129,7 +129,7 @@ function GoalForm({ goalObj }) {
           border: '1px solid #f38449',
         }}
       >
-        Create Goal
+        Submit Goal
       </Button>
     </Form>
   );
