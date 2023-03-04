@@ -23,17 +23,19 @@ function KeyMetricsForm({ onNewKeyMetricCreated }) {
     createKeyMetrics(payload).then(onNewKeyMetricCreated);
     router.back();
     setNewKeyMetric('');
-  //   createKeyMetrics(payload).then(() => {
-  //     router.back();
-  //   });
-  //   setNewKeyMetric('');
   };
 
   return (
     <Form className="key-metric-form-div" onSubmit={handleSubmit}>
       <Form.Group className="key-metric-form">
         <Form.Label>Add a key metric to this goal</Form.Label>
-        <input className="key-metric-form-input" type="text" name="key-metric" value={newKeyMetric} onChange={onChange} />
+        <input
+          className="key-metric-form-input"
+          type="text"
+          name="key-metric"
+          value={newKeyMetric}
+          onChange={onChange}
+        />
         <Button variant="primary" type="submit">
           Submit
         </Button>

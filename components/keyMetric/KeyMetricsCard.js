@@ -1,9 +1,23 @@
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { updateKeyMetrics } from '../../api';
 
 function KeyMetricsCard({ keyMetricsObj }) {
+  const [keyMetricsStatus, setKeyMetricsStatus] = useState(false);
+
+  const handleKeyMetricsStatusClick = () => updateKeyMetrics({ ...keyMetricsObj, status: !keyMetricsStatus })
+    .then((data) => {
+      if (data) {
+        setKeyMetricsStatus(!keyMetricsStatus);
+      }
+    });
+
+  useEffect(() => {
+    setKeyMetricsStatus(keyMetricsObj?.status || false);
+  }, [keyMetricsObj.status]);
+
   return (
     <div
       style={{
@@ -22,7 +36,29 @@ function KeyMetricsCard({ keyMetricsObj }) {
         >
           <b>Key Metric: {keyMetricsObj.title}</b>
         </div>
-
+        <div />
+        <button
+          type="button"
+          style={{
+            background: 'transparent',
+            border: 'none',
+          }}
+          onClick={handleKeyMetricsStatusClick}
+        >
+          <input
+            type="checkbox"
+            name="status"
+            checked={keyMetricsStatus}
+            readOnly
+          />
+          <span
+            style={{
+              marginLeft: '6px',
+            }}
+          >
+            Mark completed
+          </span>
+        </button>
       </div>
     </div>
   );
@@ -32,6 +68,7 @@ KeyMetricsCard.propTypes = {
   keyMetricsObj: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
+    status: PropTypes.bool,
     goal: PropTypes.array,
     goalId: PropTypes.number,
   }).isRequired,

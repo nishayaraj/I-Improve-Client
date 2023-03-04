@@ -1,16 +1,47 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import {
+  CircularProgressbar,
+  buildStyles,
+} from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 import { deleteGoal } from '../../api/goalData';
 
 function MyGoalCard({ goalObj, onUpdate }) {
   const router = useRouter();
+  const [keyMetricsStatusCount, setKeyMetricsStatusCount] = useState({
+    completed: undefined,
+    total: undefined,
+  });
 
-  const goalCardDate = new Date(goalObj.due);
-  const now = new Date().setHours(0, 0, 0, 0);
-  const isPastCurrentDate = (goalCardDate <= now);
+  useEffect(() => {
+    if (goalObj?.keyMetrics && goalObj?.keyMetrics.length > 0) {
+      const { keyMetrics } = goalObj;
+      let completedKmCount = 0;
+
+      keyMetrics.forEach((km) => {
+        if (km.status) {
+          completedKmCount += 1;
+        }
+      });
+
+      setKeyMetricsStatusCount({
+        completed: completedKmCount,
+        total: keyMetrics.length,
+      });
+    }
+  }, [goalObj]);
+
+  const highlightRetroOption = () => {
+    const goalCardDate = new Date(goalObj.due);
+    const now = new Date().setHours(0, 0, 0, 0);
+    return goalCardDate <= now;
+  };
 
   const deleteThisGoal = () => {
     if (window.confirm(`Delete ${goalObj.title}?`)) {
@@ -34,6 +65,8 @@ function MyGoalCard({ goalObj, onUpdate }) {
     return goalTagList;
   };
 
+  const getKMCompletedPercentage = () => (keyMetricsStatusCount.total ? ((keyMetricsStatusCount.completed / keyMetricsStatusCount.total) * 100) : 0);
+
   return (
     <div
       style={{
@@ -52,6 +85,25 @@ function MyGoalCard({ goalObj, onUpdate }) {
         >
           <b>{goalObj.title}</b>
         </div>
+        {keyMetricsStatusCount.total && (
+        <div
+          style={{
+            height: '40px',
+            width: '40px',
+          }}
+        >
+          <CircularProgressbar
+            value={getKMCompletedPercentage()}
+            text={`${keyMetricsStatusCount.completed}/${keyMetricsStatusCount.total}`}
+            styles={buildStyles({
+              textColor: 'gray',
+              pathColor: 'green',
+              trailColor: 'red',
+              textSize: 36,
+            })}
+          />
+        </div>
+        )}
         <div
           style={{ marginTop: '6px' }}
         >
@@ -68,7 +120,7 @@ function MyGoalCard({ goalObj, onUpdate }) {
           style={{
             display: 'flex',
             padding: '6px',
-            border: !isPastCurrentDate ? '2px solid red' : '1.5px solid lightgray',
+            border: highlightRetroOption() ? '2px solid red' : '1.5px solid lightgray',
             borderRadius: '8px',
             alignItems: 'center',
             width: '90px',
@@ -122,7 +174,7 @@ function MyGoalCard({ goalObj, onUpdate }) {
               background: 'none',
             }}
             onClick={editGoal}
-            disabled={isPastCurrentDate}
+            disabled={highlightRetroOption()}
           >
 
             Edit
@@ -157,6 +209,7 @@ MyGoalCard.propTypes = {
     due: PropTypes.string,
     tags: PropTypes.array,
     tagId: PropTypes.number,
+    keyMetrics: PropTypes.array,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
 };
