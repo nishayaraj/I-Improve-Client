@@ -20,3 +20,56 @@ a {
 body {
   background-color: white;
 }
+
+.signin-container {
+  background: linear-gradient(138deg, #cdc4fd 0%, #abd2f9 100%);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.loggedout-navbar {
+  width: 100%;
+  display: flex;
+  padding: 20px;
+}
+
+.signin-intro-container {
+  margin: 50px auto 20px;
+  max-width: 80%;
+}
+
+.signin-intro-title {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 70px;
+}
+
+.signin-intro-sub-title1 {
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 50px;
+}
+
+.signin-intro-sub-title2 {
+  font-size: 21px;
+  font-weight: 300;
+  line-height: 40px;
+}
+
+.signin-button-container {
+  margin: 80px auto 30px auto;
+  width: 80%;
+}
+
+.signin-button-google {
+  display: flex;
+  padding: 15px 30px;
+  background: none;
+  border-radius: 8px;
+  border: 2px solid #212529;
+}
+
+.signin-button-google-text {
+  margin-left: 8px;
+}
