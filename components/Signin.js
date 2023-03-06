@@ -1,27 +1,29 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import LoggedoutNavbar from './LoggedoutNavbar';
 import { signIn } from '../auth/auth';
 
 function Signin() {
   return (
     <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        margin: '0 auto',
-        zIndex: 1,
-        minHeight: '25rem',
-        width: '100%',
-        minWidth: '30rem',
-        paddingBlock: '0 5rem',
-      }}
+      className="signin-container"
     >
-      <h1>Hi there!</h1>
-      <p>Click the button below to login!</p>
-      <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
-        Sign In
-      </Button>
+      <LoggedoutNavbar />
+      <div className="signin-intro-container">
+        <div className="signin-intro-title">Get started with i-improve application.</div>
+        <div className="signin-intro-sub-title1">Create a free account to start tracking time and supercharge your productivity.</div>
+        <div className="signin-intro-sub-title2">No credit card required · Unsubscribe at any time</div>
+      </div>
+      <div className="signin-button-container">
+        <button
+          type="button"
+          onClick={signIn}
+          className="signin-button-google"
+        >
+          <img src="./google.svg" alt="google logo" />
+          <div className="signin-button-google-text">Login with Google</div>
+        </button>
+      </div>
     </div>
   );
 }
