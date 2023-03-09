@@ -2,31 +2,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PageTitle = ({ title, children }) => (
+const PageTitle = ({ title }) => (
   <div
-    style={{
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: '20px 0px',
-    }}
+    className="page-title"
   >
-    <div
-      style={{ fontSize: '24px' }}
-    >
-      {title}
-    </div>
-    {children}
+    {title}
   </div>
 );
 
 PageTitle.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.node,
-};
-
-PageTitle.defaultProps = {
-  children: null,
 };
 
 export default PageTitle;
