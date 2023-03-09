@@ -5,7 +5,6 @@ import React from 'react';
 import { signOut } from '../auth/auth';
 
 export default function LoggedinNavbar() {
-
   return (
     <div className="loggedin-navbar">
       <div
