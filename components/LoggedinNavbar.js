@@ -2,9 +2,15 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import { useRouter } from 'next/router';
 import { signOut } from '../auth/auth';
 
 export default function LoggedinNavbar() {
+  const router = useRouter();
+  const routeToGoalPage = () => router.push('/goals');
+  const routeToTagsPage = () => router.push('/tags');
+  const routeToActionItemPage = () => router.push('/action_items');
+
   return (
     <div className="loggedin-navbar">
       <div
@@ -19,7 +25,7 @@ export default function LoggedinNavbar() {
       <div className="loggedin-navbar-buttons-container">
         <button
           className="loggedin-navbar-buttons"
-          onClick={signOut}
+          onClick={routeToGoalPage}
         >
           <img
             src="./goalIcon.png"
@@ -28,7 +34,7 @@ export default function LoggedinNavbar() {
           />
           My goals
         </button>
-        <button className="loggedin-navbar-buttons" onClick={signOut}>
+        <button className="loggedin-navbar-buttons" onClick={routeToActionItemPage}>
           <img
             src="./action.png"
             className="loggedin-navbar-buttons-icon"
@@ -36,7 +42,7 @@ export default function LoggedinNavbar() {
           />
           Action items
         </button>
-        <button className="loggedin-navbar-buttons" onClick={signOut}>
+        <button className="loggedin-navbar-buttons" onClick={routeToTagsPage}>
           <img
             src="./options.png"
             className="loggedin-navbar-buttons-icon"
