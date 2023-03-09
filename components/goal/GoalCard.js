@@ -67,136 +67,127 @@ function MyGoalCard({ goalObj, onUpdate }) {
 
   const getKMCompletedPercentage = () => (keyMetricsStatusCount.total ? ((keyMetricsStatusCount.completed / keyMetricsStatusCount.total) * 100) : 0);
 
+  const trimmedGoalTitle = (goalObj.title.length > 33) ? `${goalObj.title.substring(0, 33)}...` : goalObj.title;
+
   return (
     <div
-      style={{
-        margin: '0px 20px 20px',
-        width: '320px',
-        border: '1px solid lightgray',
-        padding: '10px',
-        borderRadius: '8px',
-      }}
+      className="goal-card"
     >
       <div
-        style={{ fontSize: '16px', textAlign: 'left', paddingTop: '16px' }}
+        className="goal-title-container"
       >
         <div
-          style={{ color: '#717171' }}
+          className="goal-title"
         >
-          <b>{goalObj.title}</b>
+          {trimmedGoalTitle}
         </div>
         {keyMetricsStatusCount.total && (
         <div
-          style={{
-            height: '40px',
-            width: '40px',
-          }}
+          className="goal-progress"
         >
           <CircularProgressbar
             value={getKMCompletedPercentage()}
             text={`${keyMetricsStatusCount.completed}/${keyMetricsStatusCount.total}`}
             styles={buildStyles({
-              textColor: 'gray',
+              textColor: 'white',
               pathColor: 'green',
-              trailColor: 'red',
+              trailColor: '#ffc107',
               textSize: 36,
             })}
           />
         </div>
         )}
-        <div
-          style={{ marginTop: '6px' }}
-        >
-          <span>Due Date : </span>{goalObj.due}
+      </div>
+      <div
+        className="goal-info-item"
+      >
+        <div className="goal-key">
+          Due on:
         </div>
         <div
-          style={{ marginTop: '6px', color: '#717171' }}
+          className="goal-value"
         >
-          <span>Tags : </span>
-          <b>{renderGoalTagList(goalObj.tags)}</b>
+          {goalObj.due}
         </div>
+      </div>
+      <div
+        className="goal-info-item"
+      >
+        <div className="goal-key">
+          Tags:
+        </div>
+        <div
+          className="goal-value"
+        >
+          {renderGoalTagList(goalObj.tags)}
+        </div>
+      </div>
+      <div
+        className="goal-action-button-container"
+      >
         <button
           type="button"
-          style={{
-            display: 'flex',
-            padding: '6px',
-            border: highlightRetroOption() ? '2px solid red' : '1.5px solid lightgray',
-            borderRadius: '8px',
-            alignItems: 'center',
-            width: '90px',
-            cursor: 'pointer',
-            fontWeight: 'bold',
-            marginRight: '8px',
-            background: 'none',
-          }}
+          className="goal-action-button"
           onClick={routeToCreateRetroPage}
-        >
-          Retro
-        </button>
-        <div
           style={{
-            margin: '10px 0px',
-            color: '#717171',
-            display: 'flex',
-            justifyContent: 'start',
+            color: `${highlightRetroOption() ? '#ffc107' : 'white'}`,
           }}
         >
-          <button
-            type="button"
-            style={{
-              display: 'flex',
-              padding: '6px',
-              border: '1.5px solid lightgray',
-              borderRadius: '8px',
-              alignItems: 'center',
-              width: '90px',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-              marginRight: '8px',
-              background: 'none',
-            }}
-            onClick={viewGoal}
-          >
-            View
-          </button>
-          <button
-            type="button"
-            style={{
-              display: 'flex',
-              padding: '6px',
-              border: '1.5px solid lightgray',
-              borderRadius: '8px',
-              alignItems: 'center',
-              width: '90px',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-              marginRight: '8px',
-              background: 'none',
-            }}
-            onClick={editGoal}
-            disabled={highlightRetroOption()}
-          >
-
-            Edit
-          </button>
-          <button
-            type="button"
-            style={{
-              display: 'flex',
-              padding: '6px',
-              border: '1.5px solid lightgray',
-              borderRadius: '8px',
-              alignItems: 'center',
-              width: '90px',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-              background: 'none',
-            }}
-            onClick={deleteThisGoal}
-          >
-            Delete
-          </button>
-        </div>
+          <img
+            src="./inspiration.png"
+            className="goal-action-button-img"
+            alt="retro goals icon"
+          />
+          <span>
+            Start retro
+          </span>
+        </button>
+        <button
+          type="button"
+          className="goal-action-button"
+          onClick={viewGoal}
+        >
+          <img
+            src="./view.png"
+            className="goal-action-button-img"
+            alt="View goals icon"
+          />
+          <span>
+            View goal
+          </span>
+        </button>
+        <button
+          type="button"
+          className="goal-action-button"
+          onClick={editGoal}
+          disabled={highlightRetroOption()}
+          style={{
+            color: `${highlightRetroOption() ? 'gray' : 'white'}`,
+          }}
+        >
+          <img
+            src="./edit.png"
+            className="goal-action-button-img"
+            alt="Edit goals icon"
+          />
+          <span>
+            Edit goal
+          </span>
+        </button>
+        <button
+          type="button"
+          className="goal-action-button"
+          onClick={deleteThisGoal}
+        >
+          <img
+            src="./trash.png"
+            className="goal-action-button-img"
+            alt="Delete goals icon"
+          />
+          <span>
+            Delete goal
+          </span>
+        </button>
       </div>
     </div>
   );

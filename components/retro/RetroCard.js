@@ -22,7 +22,6 @@ function RetroCard({ retroObj }) {
         >
           <b>{retroObj.actionItem}</b>
         </div>
-
       </div>
     </div>
   );

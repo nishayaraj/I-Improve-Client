@@ -1,23 +1,20 @@
 import React, { useEffect, useState, useCallback } from 'react';
 // import AddGoalLink from '../../components/goal/AddGoalLink';
-// import PageTitle from '../../components/PageTitle';
-import { useRouter } from 'next/router';
+import PageTitle from '../../components/PageTitle';
 import GoalCard from '../../components/goal/GoalCard';
 import { getMyGoals } from '../../api/goalData';
 import { useAuth } from '../../auth/context/authContext';
+import AddGoalButton from '../../components/goal/AddGoalButton';
 
 function MyGoals() {
   const { user: { id } } = useAuth();
   const [goals, setGoals] = useState([]);
-  const router = useRouter();
 
   const getAllMyGoals = useCallback(() => {
     if (id) {
       getMyGoals(id).then(setGoals);
     }
   }, [id]);
-
-  const routeToGoalForm = () => router.push('/goals/new');
 
   useEffect(() => {
     getAllMyGoals();
@@ -34,35 +31,15 @@ function MyGoals() {
   ));
 
   return (
-    <div className="text-center my-4">
-      <button
-        type="button"
-        style={{
-          display: 'flex',
-          padding: '6px',
-          border: '1.5px solid lightgray',
-          borderRadius: '8px',
-          alignItems: 'center',
-          width: '90px',
-          cursor: 'pointer',
-          fontWeight: 'bold',
-          marginRight: '8px',
-          background: 'none',
-        }}
-        onClick={routeToGoalForm}
-      >
-        Add New Goal
-      </button>
-      {/* <PageTitle title="My Goals">
-        <AddGoalLink />
-      </PageTitle> */}
+    <>
+      <AddGoalButton />
+      <PageTitle title="My goals" />
       <div
-        className="d-flex flex-wrap"
-        style={{ justifyContent: 'center' }}
+        className="goal-card-container"
       >
         {renderGoal()}
       </div>
-    </div>
+    </>
   );
 }
 

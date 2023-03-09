@@ -10,9 +10,9 @@ function Signin() {
     >
       <LoggedoutNavbar />
       <div className="signin-intro-container">
-        <div className="signin-intro-title">Get started with i-improve application.</div>
-        <div className="signin-intro-sub-title1">Create a free account to start tracking time and supercharge your productivity.</div>
-        <div className="signin-intro-sub-title2">No credit card required · Unsubscribe at any time</div>
+        <div className="signin-intro-title">Groove your way to success while learning from setbacks!</div>
+        <div className="signin-intro-sub-title1"> With i-improve, Your Self-Accountability Partner, Unlock Your Future with the Power of the Past!</div>
+        <div className="signin-intro-sub-title2">Easily track progress, identify areas for improvement, and plan for a better future. Welcome aboard!</div>
       </div>
       <div className="signin-button-container">
         <button

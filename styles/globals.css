@@ -6,6 +6,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background: black;
 }
 
 a {
@@ -18,11 +19,16 @@ a {
 }
 
 body {
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  /* background-color: white; */
+}
+
+.page-container {
+  margin-top: 100px;
 }
 
 .signin-container {
-  background: linear-gradient(138deg, #cdc4fd 0%, #abd2f9 100%);
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -37,6 +43,7 @@ body {
 .signin-intro-container {
   margin: 50px auto 20px;
   max-width: 80%;
+  color: white
 }
 
 .signin-intro-title {
@@ -67,9 +74,174 @@ body {
   padding: 15px 50px 15px 15px;
   background: none;
   border-radius: 12px;
-  border: 2px solid #212529;
+  border: 2px solid white;
+  color: white;
 }
 
 .signin-button-google-text {
   margin-left: 8px;
+}
+
+.loggedout-navbar {
+  width: 100%;
+  display: flex;
+  padding: 20px;
+}
+
+.loggedin-navbar {
+  width: 100%;
+  padding: 15px 20px;
+  display: flex;
+  height: 91px;
+  border-bottom: 1px solid #222123;
+  position: fixed;
+  background: #161617cc;
+}
+
+.loggedin-navbar-buttons-container {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+}
+
+.loggedin-navbar-buttons {
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  display: inline-flex;
+  outline: none;
+  text-align: center;
+  margin-left: 20px;
+  color: white;
+}
+.loggedin-navbar-buttons:hover {
+  border-bottom: 1px solid white;
+}
+
+.loggedin-navbar-buttons-icon {
+  height: 30px;
+  margin-bottom: 4px;
+}
+
+.loggedin-navbar-app-name-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loggedin-navbar-app-name-img {
+  width: 150px;
+}
+
+.add-goal-button {
+  position: fixed;
+  top: 105px;
+  right: 30px;
+  padding: 12px;
+  background: transparent;
+  border: none;
+  z-index: 100;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+}
+
+.add-goal-button-img {
+  height: 40px;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  padding: 20px 0px;
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+}
+
+.goal-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: start;
+  margin-top: 16px;
+}
+
+.goal-card {
+  padding: 10px;
+  margin: 0px 25px 25px 0px;
+  border-radius: 8px;
+  box-shadow: rgb(0 0 0 / 37%) 0px 0px 21px -2px;
+  background:  #222123;
+}
+.goal-card:hover{
+  box-shadow:rgb(0 0 0 / 62%) 0px 0px 20px 1px
+}
+
+.goal-title-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.goal-title {
+  font-size: 16px;
+  color: white;
+  font-weight: 600;
+  line-height: 36px;
+  width: 300px;
+}
+
+.goal-progress {
+  width: 65px;
+  position: absolute;
+  right: 0;
+}
+
+.goal-info-item {
+  display: flex;
+  flex-direction: row;
+}
+
+.goal-key {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 30px;
+  width: 55px;
+  color: white;
+}
+
+.goal-value {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 30px;
+  color: white;
+}
+
+.goal-action-button-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0px;
+}
+
+.goal-action-button {
+  display: flex;
+  border: none;
+  background: none;
+  flex-direction: column;
+  width: 90px;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+}
+
+.goal-action-button-img {
+  height: 30px;
 }
