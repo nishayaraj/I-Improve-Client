@@ -1,12 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/forbid-prop-types */
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
-import { Button } from 'react-bootstrap';
 import { useAuth } from '../../auth/context/authContext';
-import PageTitle from '../PageTitle';
 import { createRetros } from '../../api/retroData';
 
 const initialState = {
@@ -53,22 +52,12 @@ function RetroForm({ retroObj }) {
   return (
     <Form
       onSubmit={handleSubmit}
-      style={{
-        color: 'black',
-        lineHeight: '25px',
-        padding: '30px 40px',
-        border: '1px solid lightgray',
-        borderRadius: '8px',
-        marginBottom: '20px',
-        background: 'white',
-      }}
+      className="form"
     >
-      <PageTitle title="Create Retro" />
       <FloatingLabel
         controlId="floatingInput1"
         label="What went well with this goal ?"
         className="mb-3"
-        style={{ marginTop: '18px' }}
       >
         <Form.Control
           type="text"
@@ -79,12 +68,10 @@ function RetroForm({ retroObj }) {
           required
         />
       </FloatingLabel>
-
       <FloatingLabel
         controlId="floatingInput1"
         label="What is one possible improvement that could have been made?"
         className="mb-3"
-        style={{ marginTop: '18px' }}
       >
         <Form.Control
           type="text"
@@ -95,12 +82,10 @@ function RetroForm({ retroObj }) {
           required
         />
       </FloatingLabel>
-
       <FloatingLabel
         controlId="floatingInput1"
         label="Action item to work towards"
         className="mb-3"
-        style={{ marginTop: '18px' }}
       >
         <Form.Control
           type="text"
@@ -111,12 +96,10 @@ function RetroForm({ retroObj }) {
           required
         />
       </FloatingLabel>
-
       <FloatingLabel
         controlId="floatingInput2"
-        label="date"
+        label="Date"
         className="mb-3"
-        style={{ marginTop: '25px' }}
       >
         <Form.Control
           type="date"
@@ -125,18 +108,21 @@ function RetroForm({ retroObj }) {
           value={retroFormInput.date}
           onChange={handleChange}
           required
+          style={{
+            color: '#185674',
+          }}
         />
       </FloatingLabel>
-      <Button
-        type="submit"
-        style={{
-          marginTop: '25px',
-          background: '#f38449',
-          border: '1px solid #f38449',
-        }}
+      <div
+        className="form-button-container"
       >
-        Create Retro
-      </Button>
+        <button
+          type="submit"
+          className="form-button"
+        >
+          Create retro
+        </button>
+      </div>
     </Form>
   );
 }

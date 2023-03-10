@@ -1,8 +1,12 @@
 import React from 'react';
+import PageTitle from '../../components/PageTitle';
 import RetroForm from '../../components/retro/RetroForm';
 
 export default function AddRetro() {
   return (
-    <RetroForm />
+    <div>
+      <PageTitle title="Let's do a quick retro" />
+      <RetroForm />
+    </div>
   );
 }

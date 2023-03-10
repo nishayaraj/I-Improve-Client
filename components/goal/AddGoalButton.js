@@ -13,7 +13,7 @@ export default function AddGoalButton() {
       onClick={routeToGoalForm}
     >
       <img
-        src="./add.png"
+        src="/add.png"
         className="add-goal-button-img"
         alt="add goals icon"
       />

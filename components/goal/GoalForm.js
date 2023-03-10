@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
-import { Button } from 'react-bootstrap';
 import Multiselect from 'multiselect-react-dropdown';
 import { useAuth } from '../../auth/context/authContext';
 import PageTitle from '../PageTitle';
@@ -69,72 +68,63 @@ function GoalForm({ goalObj }) {
   };
 
   return (
-    <Form
-      onSubmit={handleSubmit}
-      style={{
-        color: 'black',
-        lineHeight: '25px',
-        padding: '30px 40px',
-        border: '1px solid lightgray',
-        borderRadius: '8px',
-        marginBottom: '20px',
-        background: 'white',
-      }}
-    >
-      <PageTitle title={`${goalFormInput.id ? `Update : ${goalObj.title}` : 'Create goal'}`} />
-      <FloatingLabel
-        controlId="floatingInput1"
-        label="Goal Title"
-        className="mb-3"
-        style={{ marginTop: '18px' }}
+    <>
+      <PageTitle title={`${goalFormInput.id ? `Update goal: ${goalObj.title}` : 'Create a new goal'}`} />
+      <Form
+        onSubmit={handleSubmit}
+        className="form"
       >
-        <Form.Control
-          type="text"
-          placeholder="Enter Goal Title"
-          name="title"
-          value={goalFormInput.title}
-          onChange={handleChange}
-          required
+        <FloatingLabel
+          controlId="floatingInput1"
+          label="Goal Title"
+          className="mb-3"
+        >
+          <Form.Control
+            type="text"
+            placeholder="Enter Goal Title"
+            name="title"
+            value={goalFormInput.title}
+            onChange={handleChange}
+            required
+          />
+        </FloatingLabel>
+        <Multiselect
+          options={tagsList}
+          selectedValues={selectedTags}
+          onSelect={updateTagSelected}
+          onRemove={updateTagSelected}
+          displayValue="title"
+          placeholder="Select Tags"
+          hidePlaceholder
+          ref={tagMultiSelectRef}
+          className="mb-3"
         />
-      </FloatingLabel>
-
-      <Multiselect
-        options={tagsList}
-        selectedValues={selectedTags}
-        onSelect={updateTagSelected}
-        onRemove={updateTagSelected}
-        displayValue="title"
-        placeholder="Select Tags"
-        hidePlaceholder
-        ref={tagMultiSelectRef}
-      />
-      <FloatingLabel
-        controlId="floatingInput2"
-        label="due"
-        className="mb-3"
-        style={{ marginTop: '25px' }}
-      >
-        <Form.Control
-          type="date"
-          placeholder="Due Date"
-          name="due"
-          value={goalFormInput.due}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
-
-      <Button
-        type="submit"
-        style={{
-          marginTop: '25px',
-          background: '#f38449',
-          border: '1px solid #f38449',
-        }}
-      >
-        Submit Goal
-      </Button>
-    </Form>
+        <FloatingLabel
+          controlId="floatingInput3"
+          label="Due date"
+          className="mb-3"
+        >
+          <Form.Control
+            type="date"
+            placeholder="Due Date"
+            name="due"
+            value={goalFormInput.due}
+            onChange={handleChange}
+            required
+          />
+        </FloatingLabel>
+        <div
+          className="form-button-container"
+        >
+          <button
+            type="submit"
+            className="form-button"
+          >
+            Create goal
+          </button>
+        </div>
+      </Form>
+    </>
   );
 }
 

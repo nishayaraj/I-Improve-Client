@@ -19,9 +19,8 @@ function MyTags() {
 
   return (
     <div className="text-center my-4">
-      <PageTitle title="Tags">
-        <AddTagLink />
-      </PageTitle>
+      <PageTitle title="Tags" />
+      <AddTagLink />
       <div className="d-flex flex-wrap">
         {tags?.map((tag) => (
           <TagCard
