@@ -11,6 +11,8 @@ export default function LoggedinNavbar() {
   const routeToTagsPage = () => router.push('/tags');
   const routeToActionItemPage = () => router.push('/action_items');
 
+  console.log(router.pathname);
+
   return (
     <div className="loggedin-navbar">
       <div
@@ -18,7 +20,7 @@ export default function LoggedinNavbar() {
       >
         <img
           className="loggedin-navbar-app-name-img"
-          src="./improveBrandtextGY.png"
+          src="/brandText.png"
           alt="I-improve"
         />
       </div>
@@ -28,7 +30,7 @@ export default function LoggedinNavbar() {
           onClick={routeToGoalPage}
         >
           <img
-            src="./goalIcon.png"
+            src="/goalIcon.png"
             className="loggedin-navbar-buttons-icon"
             alt="my goals icon"
           />
@@ -36,7 +38,7 @@ export default function LoggedinNavbar() {
         </button>
         <button className="loggedin-navbar-buttons" onClick={routeToActionItemPage}>
           <img
-            src="./action.png"
+            src="/action.png"
             className="loggedin-navbar-buttons-icon"
             alt="action items icon"
           />
@@ -44,7 +46,7 @@ export default function LoggedinNavbar() {
         </button>
         <button className="loggedin-navbar-buttons" onClick={routeToTagsPage}>
           <img
-            src="./options.png"
+            src="/options.png"
             className="loggedin-navbar-buttons-icon"
             alt="My goal categories icon"
           />
@@ -52,7 +54,7 @@ export default function LoggedinNavbar() {
         </button>
         <button className="loggedin-navbar-buttons" onClick={signOut}>
           <img
-            src="./logoutIcon.png"
+            src="/logoutIcon.png"
             className="loggedin-navbar-buttons-icon"
             alt="logout icon"
           />

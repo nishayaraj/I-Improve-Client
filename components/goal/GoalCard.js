@@ -89,7 +89,7 @@ function MyGoalCard({ goalObj, onUpdate }) {
             value={getKMCompletedPercentage()}
             text={`${keyMetricsStatusCount.completed}/${keyMetricsStatusCount.total}`}
             styles={buildStyles({
-              textColor: 'white',
+              textColor: '#185674',
               pathColor: 'green',
               trailColor: '#ffc107',
               textSize: 36,
@@ -130,11 +130,11 @@ function MyGoalCard({ goalObj, onUpdate }) {
           className="goal-action-button"
           onClick={routeToCreateRetroPage}
           style={{
-            color: `${highlightRetroOption() ? '#ffc107' : 'white'}`,
+            fontWeight: `${highlightRetroOption() ? '800' : '400'}`,
           }}
         >
           <img
-            src="./inspiration.png"
+            src="/inspiration.png"
             className="goal-action-button-img"
             alt="retro goals icon"
           />
@@ -148,7 +148,7 @@ function MyGoalCard({ goalObj, onUpdate }) {
           onClick={viewGoal}
         >
           <img
-            src="./view.png"
+            src="/view.png"
             className="goal-action-button-img"
             alt="View goals icon"
           />
@@ -162,11 +162,11 @@ function MyGoalCard({ goalObj, onUpdate }) {
           onClick={editGoal}
           disabled={highlightRetroOption()}
           style={{
-            color: `${highlightRetroOption() ? 'gray' : 'white'}`,
+            color: `${highlightRetroOption() ? 'gray' : '#185674'}`,
           }}
         >
           <img
-            src="./edit.png"
+            src="/edit.png"
             className="goal-action-button-img"
             alt="Edit goals icon"
           />
@@ -180,7 +180,7 @@ function MyGoalCard({ goalObj, onUpdate }) {
           onClick={deleteThisGoal}
         >
           <img
-            src="./trash.png"
+            src="/trash.png"
             className="goal-action-button-img"
             alt="Delete goals icon"
           />

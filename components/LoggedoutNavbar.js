@@ -5,7 +5,7 @@ import React from 'react';
 export default function LoggedoutNavbar() {
   return (
     <div className="loggedout-navbar">
-      <img src="./logo_purple.png" alt="i-improve logo" />
+      i-improve
     </div>
   );
 }

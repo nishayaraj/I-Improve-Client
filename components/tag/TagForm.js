@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, FloatingLabel } from 'react-bootstrap';
+import PageTitle from '../PageTitle';
 import { createTag } from '../../api/tagData';
 import { useAuth } from '../../auth/context/authContext';
 
@@ -23,15 +24,38 @@ function TagForm() {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3">
-        <Form.Label>Create a new tag</Form.Label>
-        <input type="text" name="tag" value={newTag} onChange={onChange} />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+    <>
+      <PageTitle title="Add new tag" />
+      <Form
+        onSubmit={handleSubmit}
+        className="form"
+      >
+        <FloatingLabel
+          controlId="floatingInput1"
+          label="New tag title"
+          className="mb-3"
+        >
+          <Form.Control
+            type="text"
+            placeholder="Enter Goal Title"
+            name="title"
+            value={newTag}
+            onChange={onChange}
+            required
+          />
+        </FloatingLabel>
+        <div
+          className="form-button-container"
+        >
+          <button
+            type="submit"
+            className="form-button"
+          >
+            Create tag
+          </button>
+        </div>
+      </Form>
+    </>
   );
 }
 
