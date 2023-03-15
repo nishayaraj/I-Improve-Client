@@ -2,26 +2,35 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { deleteRetros } from '../../api/retroData';
 
-function RetroCard({ retroObj }) {
+function RetroCard({ retroObj, onUpdate }) {
+  const deleteThisRetro = () => {
+    if (window.confirm(`Delete ${retroObj.actionItem}?`)) {
+      deleteRetros(retroObj.id).then(() => onUpdate());
+    }
+  };
+
   return (
     <div
-      style={{
-        margin: '0px 20px 20px',
-        width: '320px',
-        border: '1px solid lightgray',
-        padding: '10px',
-        borderRadius: '8px',
-      }}
+      className="keymetric-card"
     >
-      <div
-        style={{ fontSize: '16px', textAlign: 'left', paddingTop: '16px' }}
+      <button
+        type="button"
+        className="keymetric-card-check"
+        onClick={deleteThisRetro}
       >
-        <div
-          style={{ color: '#717171' }}
-        >
-          <b>{retroObj.actionItem}</b>
-        </div>
+        <img
+          className="action-item-checkbox"
+          src="/delete.png"
+          alt="action item check icon"
+        />
+
+      </button>
+      <div
+        className="keymetric-card-title"
+      >
+        {retroObj.actionItem}
       </div>
     </div>
   );
@@ -38,6 +47,7 @@ RetroCard.propTypes = {
     date: PropTypes.string,
     status: PropTypes.bool,
   }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };
 
 export default RetroCard;

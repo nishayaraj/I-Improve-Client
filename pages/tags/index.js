@@ -18,10 +18,19 @@ function MyTags() {
   }, [getAllMyTags, user]);
 
   return (
-    <div className="text-center my-4">
-      <PageTitle title="Tags" />
-      <AddTagLink />
-      <div className="d-flex flex-wrap">
+    <>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        <PageTitle title="Tags" />
+        <AddTagLink />
+      </div>
+      <div>
         {tags?.map((tag) => (
           <TagCard
             key={tag.id}
@@ -30,7 +39,7 @@ function MyTags() {
           />
         ))}
       </div>
-    </div>
+    </>
   );
 }
 

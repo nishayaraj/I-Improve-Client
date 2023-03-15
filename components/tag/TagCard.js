@@ -1,6 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card } from 'react-bootstrap';
 import { deleteTag } from '../../api/tagData';
 
 const TagCard = ({ tagObj, onUpdate }) => {
@@ -11,14 +11,27 @@ const TagCard = ({ tagObj, onUpdate }) => {
   };
 
   return (
-    <Card className="text-center">
-      <Card.Body>
-        <Card.Text>{tagObj.title}</Card.Text>
-        <Button variant="danger" onClick={deleteSingleTag} className="m-2">
-          DELETE
-        </Button>
-      </Card.Body>
-    </Card>
+    <div
+      className="keymetric-card"
+    >
+      <button
+        type="button"
+        className="keymetric-card-check"
+        onClick={deleteSingleTag}
+      >
+        <img
+          className="action-item-checkbox"
+          src="/delete.png"
+          alt="action item check icon"
+        />
+
+      </button>
+      <div
+        className="keymetric-card-title"
+      >
+        {tagObj.title}
+      </div>
+    </div>
   );
 };
 

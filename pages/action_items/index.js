@@ -18,8 +18,8 @@ function MyRetros() {
 
   return (
     <div className="text-center my-4">
-      <PageTitle title="Action Items" />
-      <div className="d-flex flex-wrap">
+      <PageTitle title="Action items" />
+      <div className="">
         {retros?.map((retro) => (
           <RetroCard
             key={retro.id}
