@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback } from 'react';
-// import AddGoalLink from '../../components/goal/AddGoalLink';
 import PageTitle from '../../components/PageTitle';
 import GoalCard from '../../components/goal/GoalCard';
 import { getMyGoals } from '../../api/goalData';

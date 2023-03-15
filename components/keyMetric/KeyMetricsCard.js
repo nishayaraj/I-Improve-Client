@@ -20,45 +20,36 @@ function KeyMetricsCard({ keyMetricsObj }) {
 
   return (
     <div
-      style={{
-        margin: '0px 20px 20px',
-        width: '320px',
-        border: '1px solid lightgray',
-        padding: '10px',
-        borderRadius: '8px',
-      }}
+      className="keymetric-card"
     >
-      <div
-        style={{ fontSize: '16px', textAlign: 'left', paddingTop: '16px' }}
+      <button
+        type="button"
+        className="keymetric-card-check"
+        onClick={handleKeyMetricsStatusClick}
       >
-        <div
-          style={{ color: '#717171' }}
-        >
-          <b>Key Metric: {keyMetricsObj.title}</b>
-        </div>
-        <div />
-        <button
-          type="button"
-          style={{
-            background: 'transparent',
-            border: 'none',
-          }}
-          onClick={handleKeyMetricsStatusClick}
-        >
-          <input
-            type="checkbox"
-            name="status"
-            checked={keyMetricsStatus}
-            readOnly
-          />
-          <span
-            style={{
-              marginLeft: '6px',
-            }}
-          >
-            Mark completed
-          </span>
-        </button>
+        {
+          keyMetricsStatus
+            ? (
+              <img
+                className="action-item-checkbox"
+                src="/checkmark.png"
+                alt="action item check icon"
+              />
+            )
+            : (
+              <img
+                className="action-item-checkbox"
+                src="/unchecked.png"
+                alt="action item check icon"
+              />
+            )
+        }
+
+      </button>
+      <div
+        className="keymetric-card-title"
+      >
+        {keyMetricsObj.title}
       </div>
     </div>
   );

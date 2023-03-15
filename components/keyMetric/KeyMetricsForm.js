@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
-import PropTypes from 'prop-types';
+import { Form, FloatingLabel } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import { createKeyMetrics } from '../../api/keyMetricsdata';
+import PageTitle from '../PageTitle';
 
-function KeyMetricsForm({ onNewKeyMetricCreated }) {
+function KeyMetricsForm() {
   const router = useRouter();
-
   const { goalId } = router.query;
-
   const [newKeyMetric, setNewKeyMetric] = useState('');
 
   const onChange = (e) => setNewKeyMetric(e.target.value);
@@ -20,32 +18,46 @@ function KeyMetricsForm({ onNewKeyMetricCreated }) {
       title: newKeyMetric,
       status: false,
     };
-    createKeyMetrics(payload).then(onNewKeyMetricCreated);
-    router.back();
-    setNewKeyMetric('');
+    createKeyMetrics(payload).then(() => {
+      setNewKeyMetric('');
+      router.back();
+    });
   };
 
   return (
-    <Form className="key-metric-form-div" onSubmit={handleSubmit}>
-      <Form.Group className="key-metric-form">
-        <Form.Label>Add a key metric to this goal</Form.Label>
-        <input
-          className="key-metric-form-input"
-          type="text"
-          name="key-metric"
-          value={newKeyMetric}
-          onChange={onChange}
-        />
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form.Group>
-    </Form>
+    <>
+      <PageTitle title="Add a key metric to the goal" />
+      <Form
+        onSubmit={handleSubmit}
+        className="form"
+      >
+        <FloatingLabel
+          controlId="floatingInput1"
+          label="New key metric"
+          className="mb-3"
+        >
+          <Form.Control
+            type="text"
+            placeholder="Enter new key metric"
+            name="key-metric"
+            value={newKeyMetric}
+            onChange={onChange}
+            required
+          />
+        </FloatingLabel>
+        <div
+          className="form-button-container"
+        >
+          <button
+            type="submit"
+            className="form-button"
+          >
+            Add new key metrics
+          </button>
+        </div>
+      </Form>
+    </>
   );
 }
-
-KeyMetricsForm.propTypes = {
-  onNewKeyMetricCreated: PropTypes.func.isRequired,
-};
 
 export default KeyMetricsForm;

@@ -120,7 +120,7 @@ function GoalForm({ goalObj }) {
             type="submit"
             className="form-button"
           >
-            Create goal
+            {goalFormInput.id ? 'Update goal' : 'Create goal'}
           </button>
         </div>
       </Form>

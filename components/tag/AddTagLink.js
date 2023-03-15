@@ -9,16 +9,10 @@ function AddTagLink() {
   return (
     <button
       type="button"
+      className="add-km-button"
       onClick={routeToNewTagPage}
-      className="addButton"
     >
-      <span
-        style={{
-          fontSize: '14px',
-        }}
-      >
-        Add New Tag
-      </span>
+      Add a new tag
     </button>
   );
 }

@@ -195,7 +195,7 @@ function MyGoalCard({ goalObj, onUpdate }) {
 
 MyGoalCard.propTypes = {
   goalObj: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string || PropTypes.number,
     title: PropTypes.string,
     due: PropTypes.string,
     tags: PropTypes.array,
