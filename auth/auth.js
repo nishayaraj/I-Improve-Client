@@ -3,7 +3,7 @@ import 'firebase/auth';
 import { clientCredentials } from '../utils/client';
 
 const checkUser = (uid) => new Promise((resolve, reject) => {
-  fetch('http://127.0.0.1:8000/checkuser', {
+  fetch('https://i-improve-server.herokuapp.com/checkuser', {
     method: 'POST',
     body: JSON.stringify({
       uid,

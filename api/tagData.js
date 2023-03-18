@@ -19,7 +19,7 @@ const createTag = (tag) => fetch(`${clientCredentials.apiUrl}/tags`, {
     console.error('Error:', error);
   });
 
-const deleteTag = (tagId) => fetch(`http://localhost:8000/tags/${tagId}`, {
+const deleteTag = (tagId) => fetch(`${clientCredentials.apiUrl}/tags/${tagId}`, {
   method: 'DELETE',
 });
 

@@ -34,7 +34,7 @@ const createGoal = (goal) => fetch(`${clientCredentials.apiUrl}/goals`, {
     console.error('Error:', error);
   });
 
-const deleteGoal = (goalId) => fetch(`http://localhost:8000/goals/${goalId}`, {
+const deleteGoal = (goalId) => fetch(`${clientCredentials.apiUrl}/goals/${goalId}`, {
   method: 'DELETE',
 });
 

@@ -19,7 +19,7 @@ const createRetros = (retro) => fetch(`${clientCredentials.apiUrl}/retros`, {
     console.error('Error:', error);
   });
 
-const deleteRetros = (retroId) => fetch(`http://localhost:8000/retros/${retroId}`, {
+const deleteRetros = (retroId) => fetch(`${clientCredentials.apiUrl}/retros/${retroId}`, {
   method: 'DELETE',
 });
 
