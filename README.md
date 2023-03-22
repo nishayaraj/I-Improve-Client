@@ -35,7 +35,7 @@ This is the client side repo of i-improve.
 To try the server side repo, [click here](https://github.com/nishayaraj/I-Improve-Server). Read the backend repository's ReadMe for instructions on how to get the Backend on your local machine
 
 
-1. 1. Set up a project in [Firebase](https://firebase.google.com/) 
+1. Set up a project in [Firebase](https://firebase.google.com/) 
 
 2. Clone this repo into your machine
 ```bash
