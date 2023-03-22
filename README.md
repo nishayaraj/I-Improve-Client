@@ -1,44 +1,96 @@
-# React/Next.js Django Auth Template
 
-## Topics
-- [Get Started](#getting-started)
-- [Starting the Project](#starting-the-project)
-___
-## Getting Started
-### Use Template
-#### 1. To get started, click the GREEN "Use this Template" button at the top of the repo
-<img width="915" alt="Screen Shot 2022-07-06 at 12 54 01 PM" src="https://user-images.githubusercontent.com/29741570/177612998-4aac9237-5a1e-4f13-8ae0-468587521564.png">
+# I-Improve: Client
 
-#### 2. Make sure YOUR github account is selected in the dropdown and name your project
-<img width="763" alt="Screen Shot 2022-07-06 at 12 54 48 PM" src="https://user-images.githubusercontent.com/29741570/177613126-dd38f678-7553-4f27-8a4a-75680f14d71e.png">
+[i-improve in action](https://www.loom.com/share/3cd63fe91e7f40919020f7cee7de19f3)
 
-#### 3. Clone your new repo to your local machine
-#### 4. Go to the **NEXT** section
+I-Improve is a web application designed to provide users with a personalized and accountable approach to goal tracking. In a market flooded with generic goal-tracking apps, I-Improve aims to offer a unique experience that encourages users to take ownership of their goals.
 
-## Starting the Project
-1. Create a Firebase project and set up authentication. Use [these videos](https://vimeo.com/showcase/codetracker-firebase) as a refresher if needed.
-1. Create a `.env` file at the root of the project
-1. Copy/Paste the contents of the `.env.sample` file to your newly created `.env` file.
-1. Copy over all of your Firebase values into the `.env` file.
-1. Open the `package.json` file and change the `name` property to the name of your application, and `author` to  your name.
-1. From your command line, be in the root directory and run `npm install` OR `npm i` for short.
-1. Next, run `npm run prepare`. This command sets up husky to track eslint errors on commit that will make your deploy fail on Netlify.
-1. To start your application, run `npm run dev`. THIS IS THE COMMAND YOU WILL USE TO RUN YOUR DEVELOPMENT SERVER FROM NOW ON.
-1. Open [http://localhost:3000](http://localhost:3000) with your browser.
+The app uses modern web development technologies such as HTML, CSS, JavaScript and JReact on the front-end, while the back-end is powered by Python, Django and SQLite. The user interface is designed to be intuitive and user-friendly, making it easy for users to navigate and use the app.
 
-### If you see this, you are set to go!
-<img width="450" alt="Screen Shot 2022-07-06 at 1 07 27 PM" src="https://user-images.githubusercontent.com/29741570/177615077-9b6a75bc-0260-4d29-bb88-bd95a3140687.png">
+## Project Overview
+Using I-Improve, users can create, update, and delete their goals, along with adding key metrics to break down their targets. Once the due date arrives, the app prompts users to do a retrospective analysis. This analysis helps users identify what went right, what went wrong, and create an action plan based on the findings.
+
+### Features
+- Users can sign in to the app with Google
+- Landing/Welcome Page/ My Goals:
+   - This page displays all user-created goal cards, with due date, tags and completion rate
+   - "Add new goal button" takes the user to the goal form to create a new goal.
+   - If due date is passed, "Edit goal" button disabled and "Start retro" button highlighted 
+   - "View goal" button opens individual goal data, with tags, due date and associated key metrics 
+   - You can add new key metrics to a goal by clicking the "Add new key-metrics button"
+   - Goal can be updated using "Edit goal" button and deleted using "delete goal" button.
+- Manage Tags Page:
+   - Displays all the tags created by the user.
+   - The user can add new tags by clicking the "Add new tag" button.
+   - Tags can be deleted by clicking the "delete" button on the tag cards.
+- Retro Button on Goal Card:
+   - On click directs user to Retro form with guided questions on what went well, what to improve and one action item to succeed in future. 
+   -  The button is highlighted once user passes due date.
+   - The button is always active.
+- Action Items Page:
+   - Displays all the action items created by the user in the Retro Process.
+
+## Try out i-improve/ Run Locally
+This is the client side repo of i-improve. 
+To try the server side repo, [click here](https://github.com/nishayaraj/I-Improve-Server). Read the backend repository's ReadMe for instructions on how to get the Backend on your local machine
 
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+1. 1. Set up a project in [Firebase](https://firebase.google.com/) 
 
-**NOTES:** 
-- If you see the following error, you did not follow all the setup steps correctly and failed to add your Firebase creds. Go back and do that NOW.
+2. Clone this repo into your machine
+```bash
+git clone git@github.com:nishayaraj/I-Improve-Client.git
+```
+3. Navigate into the directory
+```bash 
+cd I-Improve-Client
+```
+4. At the root level of the project, create a .env file. Add the following into the file
+ ```bash 
+NEXT_PUBLIC_FIREBASE_API_KEY=""
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=""
+NEXT_PUBLIC_DATABASE_URL="http://localhost:8000"
+ ```
+5. Inside the project in firebase, navigate to the project settings, scroll down to sdk setup and configuration and copy paste values of API key and Auth domain to the corresponding fields inside the .env file.
 
-<img width="1043" alt="Screen Shot 2022-07-06 at 11 18 45 AM" src="https://user-images.githubusercontent.com/29741570/177612501-c2628f18-4bbd-4de9-aae6-27ffba1172d6.png">
-        
-## Learn More about Next.js
-To learn more about Next.js, take a look at the following resources:
+6. In the code, open the package.json file and change the name property to the name of your application, and author to your name
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+7. From the command line, run **either one** of the following commands
+```
+npm install OR npm i for short
+```
+8. Then run this from the command line
+```
+npm run prepare
+```
+9. To start the project, run
+```
+npm run dev
+```
+10. Open your browser and access http://localhost:3000 
+
+## Planning
+- [ERD](https://dbdiagram.io/d/63dad405296d97641d7dca1e). 
+- [App Wireframes](https://whimsical.com/i-improve-8B3aqYMnxcQXSpwPP5DvZc). 
+
+## Tech Stack
+### Frontend 
+<div align="center">  
+<a href="https://reactjs.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/react-original-wordmark.svg" alt="React" height="50" /></a>  
+<a href="https://getbootstrap.com/docs/3.4/javascript/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/bootstrap-plain.svg" alt="Bootstrap" height="50" /></a>  
+<a href="https://en.wikipedia.org/wiki/HTML5" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/html5-original-wordmark.svg" alt="HTML5" height="50" /></a>  
+<a href="https://www.javascript.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/javascript-original.svg" alt="JavaScript" height="50" /></a>  
+<a href="https://firebase.google.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/firebase.png" alt="Firebase" height="50" /></a>  
+</div>
+
+</td><td valign="top" width="33%">
+
+### Backend  
+<div align="center">  
+<a href="https://www.python.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/python-original.svg" alt="Python" height="50" /></a>  
+<a href="https://www.djangoproject.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/django-original.svg" alt="Django" height="50" /></a> 
+<a href="hhttps://www.sqlite.org/index.html" target="_blank"><img style="margin: 10px" src="https://user-images.githubusercontent.com/33158051/103467186-7b6a8900-4d1a-11eb-9907-491064bc8458.png" alt="SQLite" height="50" /></a> 
+</div>
+
+</td><td valign="top" width="33%">
+
